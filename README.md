@@ -1,6 +1,4 @@
-# SentiLens
-
-### Uncover reviews' hidden sentiment
+# SentiLens - Uncover reviews' hidden sentiment
 
   - [ ] Exploring Supervised Machine Learning 
   - [ ] Exploring Unsupervised Machine Learning

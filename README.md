@@ -6,6 +6,19 @@ Employing aspect-based sentiment analysis (ABSA) to extract valuable feature ins
 
 Utilizing manually annotated reviews for aspect sentiment analysis to extract aspects and predict sentiments from reviews. This enables consumers to obtain a condensed overview of sentiments related to various product features, eliminating the need to delve into an extensive array of reviews. As a result, the decision-making process becomes more streamlined and user-friendly.
 
+## PROPOSED DATA SCIENCE SOLUTION
+The project will be structured in phases:
+**Phase 1:** Aspect term extraction
+The goal of this phase is to be able to extract all aspect term from the given review text. 
+
+**Phase 2:** Aspect term sentiment prediction
+By completing this phase, the project should have a model to predict sentiment for those identified aspect in Phase 1 using the annotated Laptop dataset.
+
+**Phase 3:** ABSA extension
+I am hoping to apply transfer learning to extend the model from Phase 2 to perform ABSA on a larger unannotated dataset of Amazon product reviews.
+
+**Phase 4:** App development
+The end result of this project is to successfully develop an application for end-users to research Amazon products' reviews.
 
 
 ## THE USER:
@@ -45,9 +58,21 @@ Reduced landfill waste: The prevalence of returned products contributing to land
 Decreased CO2 Footprint: Reverse delivery processes, required for returned items, contribute to higher carbon emissions due to transportation. With a decrease in product returns through our approach, the need for reverse logistics and subsequent carbon emissions can be mitigated, resulting in a tangible reduction in CO2 footprint.
 
 ## THE DATA:
+The data being used in this project is obtained from <a href='https://huggingface.co/datasets/jakartaresearch/semeval-absa'>Hugging Face SemEval - SemEval-2015 Task 12</a>
+This dataset contains annotated review text from Amazon Laptop.
+- Dataset size: 3.85k rows
+- Data structure:
+  - id: int, unique identifier of each text
+  - text: str, content of the text
+  - aspects: dict{term: array str, polarity: array str, from: array int, to: array int}
+    Annotated aspects for each text
+    - term: aspect extracted from text, each text may contain 0 to more than 1 terms
+    - polarity: sentiment for each term in text with values: positive, negative, neutral and conflict
+    - from: the start index of the identified term
+    - to: the end index of the identified term
+
+## INSTALLATION
+- Tested on Python 3.9.16 (recommended to use a virtual environment such as Pyenv)
+- Install data and requirements: bash setup.sh
 
 
-## CHECKLIST:
-  - [ ] Exploring Supervised Machine Learning 
-  - [ ] Exploring Unsupervised Machine Learning
-  - [ ] Upload final project to Synapse when all tasks are complete :tada:

@@ -14,7 +14,7 @@ The goal of this phase is to be able to extract all aspect term and their sentme
 **Phase 2:** Unsupervised sentiment aspect term extraction
 I am hoping to utilize a larger unannotated dataset with rule-based aspect term annotations and re-train the model using this extended dataset in order to improve the model performance and to extend it to more domains.
 
-**Phase 4:** App development
+**Phase 3:** App development
 The end result of this project is to successfully develop an application for end-users to research Amazon products' reviews.
 
 

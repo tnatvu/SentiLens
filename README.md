@@ -8,14 +8,11 @@ Utilizing manually annotated reviews for aspect sentiment analysis to extract as
 
 ## PROPOSED DATA SCIENCE SOLUTION
 The project will be structured in phases:
-**Phase 1:** Aspect term extraction
-The goal of this phase is to be able to extract all aspect term from the given review text. 
+**Phase 1:** Supervised ABSA
+The goal of this phase is to be able to extract all aspect term and their sentment from the given review text. 
 
-**Phase 2:** Aspect term sentiment prediction
-By completing this phase, the project should have a model to predict sentiment for those identified aspect in Phase 1 using the annotated Laptop dataset.
-
-**Phase 3:** ABSA extension
-I am hoping to apply transfer learning to extend the model from Phase 2 to perform ABSA on a larger unannotated dataset of Amazon product reviews.
+**Phase 2:** Unsupervised sentiment aspect term extraction
+I am hoping to utilize a larger unannotated dataset with rule-based aspect term annotations and re-train the model using this extended dataset in order to improve the model performance and to extend it to more domains.
 
 **Phase 4:** App development
 The end result of this project is to successfully develop an application for end-users to research Amazon products' reviews.

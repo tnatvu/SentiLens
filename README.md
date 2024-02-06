@@ -8,15 +8,18 @@ Utilizing manually annotated reviews for aspect sentiment analysis to extract as
 
 ## PROPOSED DATA SCIENCE SOLUTION
 The project will be structured in phases:
-**Phase 1:** Supervised ABSA
+
+- [X] **Phase 1:** Supervised ABSA
 The goal of this phase is to be able to extract all aspect term and their sentment from the given review text. 
 
-**Phase 2:** Unsupervised sentiment aspect term extraction
+- [ ] **Phase 2:** Unsupervised sentiment aspect term extraction
 I am hoping to utilize a larger unannotated dataset with rule-based aspect term annotations and re-train the model using this extended dataset in order to improve the model performance and to extend it to more domains.
 
-**Phase 3:** App development
-The end result of this project is to successfully develop an application for end-users to research Amazon products' reviews.
-
+- [ ] **Phase 3:** App development
+The end result of this project is to successfully develop an applications for:
+  1. end-users to research e-commerce products' reviews
+  2. sellers on the platform to learn more about their sales and customers' feedback
+  3. e-commerce platform to improve product listing, seller managements
 
 ## THE USER:
 
@@ -67,6 +70,50 @@ This dataset contains annotated review text from Amazon Laptop.
     - polarity: sentiment for each term in text with values: positive, negative, neutral and conflict
     - from: the start index of the identified term
     - to: the end index of the identified term
+
+## DATA PREPARATION
+The data is transformed to a word token based and aspects are labelled using unified BIO technique (as introduced by <a href='https://aclanthology.org/2020.emnlp-main.453.pdf'>Wu et al., 2020</a>) which combines aspect boundaries and aspect sentiment.
+  Word boundaries:
+  - B: indicates the 1st word in the aspect term
+  - I: indicates the subsequent word in the aspect term
+  - O: indicates words that are not part of any aspect term
+
+  Aspect sentiment:
+  - POS: positive
+  - NEU: neutral
+  - NEG: conflict
+
+This unified BIO label technique is more effective in recognizing unigram and n-gram aspect terms comparing to a binary classification (whether a token is part of an aspect). By using a unified a approach, we can combine two tasks: aspect extraction and sentiment classification into one task.
+
+## EDA:
+  ### 1. Word counts per review sentence
+  ### 2. Aspect vs non-aspect distribution
+  ### 3. Part of speech & aspects
+  ### 4. Aspect polarity & context sentiments
+
+
+## PERFORMANCE METRICS:
+  Implemented models are evaluated using CoNLL F1 score (as described by <a href='https://aclanthology.org/W02-2024/'>Tjong Kim Sang, 2002</a>) which is a much more restricted f1 score that is designed for token classification (named entity classification) models. The score only give credits to "whole" aspect accuracy, partial matchings are considered a failure in this metric.
+
+## MODELS:
+This project includes application of fundamental machine learning algorithms (random forest & CRF) and advanced transfer learning neural network from pretrained model (DistilBERT).
+
+### Fundamental ML algorithms:
+
+I have created the below features for each token (word) in the sentence, such as:
+- word (the word itself)
+- stemming / lemming versions of word
+- part of speech (POS) of word
+- words sentiment lexicon
+- context words within a pre-defined window (5 words surrounding the token)
+- context words stemming/ lemming
+- context words POS
+- context words sentiment lexicon
+- ...
+
+The list is not exhaustive, and is an iterative process as we perform EDA and go back and refining/ adding more features.
+
+Overall results for both a default random forest and CRF model were coNLL f1 = 0, while token only f1 score (macro) was 0.14. This suggested that the provided features did not provide a lot of information for the models to train on, and the models failed the most is in recognizing the aspect's polarity.
 
 ## INSTALLATION
 - Tested on Python 3.9.16 (recommended to use a virtual environment such as Pyenv)

@@ -97,8 +97,18 @@ This unified BIO label technique is more effective in recognizing unigram and n-
 
 ## MODELS:
 This project includes application of fundamental machine learning algorithms (random forest & CRF) and advanced transfer learning neural network from pretrained model (DistilBERT).
+### 1. Model performance summary
+| Model | Variation | coNLL F1 | Note |
+| :---  | :----     | :---:    | :---          |
+| Random Forest   | | 0     |     |
+| CRF   | | 0     |     |
+| DistillBert | 1 Linear layer | 0.51 |
+|             | 1 Linear layer - downsample | 0.52 |
+|             | 1 Linear layer - sCR upsample | 0.52 |
+|             | 2 Linear layer - downsanple | 0.52 | 
+|             | Bi-LSTM layer - downsanple | 0.52 | Converge really slow
 
-### Fundamental ML algorithms:
+### 2. Fundamental ML algorithms:
 
 I have created the below features for each token (word) in the sentence, such as:
 - word (the word itself)
@@ -114,6 +124,31 @@ I have created the below features for each token (word) in the sentence, such as
 The list is not exhaustive, and is an iterative process as we perform EDA and go back and refining/ adding more features.
 
 Overall results for both a default random forest and CRF model were coNLL f1 = 0, while token only f1 score (macro) was 0.14. This suggested that the provided features did not provide a lot of information for the models to train on, and the models failed the most is in recognizing the aspect's polarity.
+
+### 3. DistilBERT transfer learning:
+
+I experimented with three components trying to tune DistilBERT model:
+- Data sampling:
+  - original dataset
+  - downsampling non-aspect sentences
+  - upsampling "rare/ higher value" sentences
+- Architecture:
+  - Single linear layer
+  - Two linear layers
+  - Bi-LSTM layer
+- Label weighted loss
+  - Non-weighted loss
+  - Label inverse weighted loss
+ 
+#### Data sampling:
+
+The experiments showed that using the same architecture (single linear layer) applying upsampling/ downsampling techniques improved the model's performance slightly. Given how imbalance the dataset is, there may be more opportunities to experiment with different sampling techniques to achieve a better results.
+
+#### Architecture:
+
+The more complex the architecture is, the more epochs it needs to achieve the same results. However, it may still provide a slight improvement in the model performance. It took "2 linear layer" model xx epochs to reach the same performance of "single linear layer", while "Bi-LSTM" required xxx epochs. Unlesss there is a requirement to maximize model's prediction power, opting for a simpler architecture can significantly speed up training time.
+
+#### Label weighted loss:
 
 ## INSTALLATION
 - Tested on Python 3.9.16 (recommended to use a virtual environment such as Pyenv)

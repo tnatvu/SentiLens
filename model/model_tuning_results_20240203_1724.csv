@@ -1,0 +1,4 @@
+,sklearn_f1_score,f1
+random forest,0.14,0.0
+crf,0.14,0.0
+sc_1_ds_ori_linear_e15_ld01_b64_wF,0.6,0.5338

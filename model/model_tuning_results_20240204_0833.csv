@@ -1,0 +1,10 @@
+,sklearn_f1_score,f1
+random forest,0.14,0.0
+crf,0.14,0.0
+sc_1_ds_ori_linear_e15_ld01_b64_wF,0.6,0.5338
+sc_10_ds_down_linear_e15_ld01_b64_wF,0.62,0.5491
+sc_100_ds_down_additional_linear_e50_ld01_b64_wF,0.42,0.346
+sc_101_ds_down_lstm_e70_ld01_b64_wF,0.14,0.0
+sc_10000_ds_down_additional_linear_e100_ld05_b512_wF,0.14,0.0
+sc_10000_ds_down_additional_linear_e150_ld01_b64_wF,0.57,0.4807
+sc_10001_ds_down_lstm_e300_ld01_b64_wF,0.33,0.3333

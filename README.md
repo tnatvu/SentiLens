@@ -87,10 +87,16 @@ This unified BIO label technique is more effective in recognizing unigram and n-
 
 ## EDA:
   ### 1. Word counts per review sentence
+  95% records have <= 35 words. We should be in the "safe zone" to apply any alogrithms.
+  
   ### 2. Aspect vs non-aspect distribution
+  Very imbalance dataset with 1:20 ratio between aspect and non-aspect words
+  
   ### 3. Part of speech & aspects
+  Noun has 26% being an aspect term in a sentence, while non-noun has only 1.6% chances.
+  
   ### 4. Aspect polarity & context sentiments
-
+  Overall within 5 words pre-aspect words and 5 words preceeding aspect words, very low % of aspect words (<3%) have a context word that have positive or negative sentiment (annotated using NLTK sentiment lexicon). Positive aspects have the highest chance of having aspect context, where neutral has evenly positive & negative context. Interestingly that negative aspects have the highest positive context, but also close to very high negative context.
 
 ## PERFORMANCE METRICS:
   Implemented models are evaluated using CoNLL F1 score (as described by <a href='https://aclanthology.org/W02-2024/'>Tjong Kim Sang, 2002</a>) which is a much more restricted f1 score that is designed for token classification (named entity classification) models. The score only give credits to "whole" aspect accuracy, partial matchings are considered a failure in this metric.

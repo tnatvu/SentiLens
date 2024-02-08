@@ -1,2 +1,4 @@
-model/*
+model/saved/*
+model/predictions/*
+model/logs/*
 models/*

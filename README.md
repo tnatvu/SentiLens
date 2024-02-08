@@ -13,7 +13,7 @@ The project will be structured in phases:
 The goal of this phase is to be able to extract all aspect term and their sentment from the given review text. 
 
 - [ ] **Phase 2:** Unsupervised sentiment aspect term extraction
-I am hoping to utilize a larger unannotated dataset with rule-based aspect term annotations and re-train the model using this extended dataset in order to improve the model performance and to extend it to more domains.
+I am hoping to utilize a larger unannotated dataset with rule-based aspect term annotations and re-train the model using this extended dataset in order to improve the model performance and to extend it to more domains (as suggested by <a href='https://aclanthology.org/W17-5224/'>Giannakopoulos et al., WASSA 2017</a>)
 
 - [ ] **Phase 3:** App development
 The end result of this project is to successfully develop an applications for:
@@ -98,15 +98,15 @@ This unified BIO label technique is more effective in recognizing unigram and n-
 ## MODELS:
 This project includes application of fundamental machine learning algorithms (random forest & CRF) and advanced transfer learning neural network from pretrained model (DistilBERT).
 ### 1. Model performance summary
-| Model | Variation | coNLL F1 | Note |
-| :---  | :----     | :---:    | :---          |
-| Random Forest   | | 0     |     |
-| CRF   | | 0     |     |
-| DistillBert | 1 Linear layer | 0.51 |
-|             | 1 Linear layer - downsample | 0.52 |
-|             | 1 Linear layer - sCR upsample | 0.52 |
-|             | 2 Linear layer - downsanple | 0.52 | 
-|             | Bi-LSTM layer - downsanple | 0.52 | Converge really slow
+| Model | Variation | coNLL F1 | Training loss | Note |
+| :---  | :----     | :---:    | :---          |:---
+| Random Forest   | | 0     |     |  |
+| CRF             | | 0     |     |  |
+| DistillBert | 1 Linear layer | 0.53 | | 10 epochs
+|             | 1 Linear layer - downsample | 0.55 | | 10 epochs
+|             | 1 Linear layer - sCR upsample | 0.56 | | 10 epochs. Each epoch took a very long time to complete (due to a significant increase in amount of data). The model reached peak performance after 2-3 epochs. This may benefits some data shuffling techniques for further improvements.
+|             | 2 Linear layer - downsanple | 0.46 | 0.37 | 150 epochs. Given the training loss is still pretty high, we can increase the # epochs, I believe the model can give a better result than single linear layer model
+|             | Bi-LSTM layer - downsanple | 0.52 | | Converge really slow
 
 ### 2. Fundamental ML algorithms:
 
